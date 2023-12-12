@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
     private String username;
@@ -25,6 +25,5 @@ public class UserEntity {
     private String patronymic;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", nullable = false)
-    @ToString.Exclude
     private UserRole role;
 }
