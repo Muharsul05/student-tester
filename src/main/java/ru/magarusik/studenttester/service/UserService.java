@@ -24,6 +24,15 @@ public class UserService implements UserDetailsService {
         return userEntityRepository.findAll();
     }
 
+
+
+    public List<UserEntity> getAllTeachers() {
+        return userEntityRepository.findAll()
+                .stream()
+                .filter(user -> "Преподаватель".equals(user.getRole().getName()))
+                .toList();
+    }
+
     public void saveUser(UserEntity userEntity) {
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         userEntityRepository.save(userEntity);

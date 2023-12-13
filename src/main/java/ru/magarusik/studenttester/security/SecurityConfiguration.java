@@ -6,11 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -20,7 +18,7 @@ import ru.magarusik.studenttester.service.UserService;
 import java.util.List;
 
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 public class SecurityConfiguration {
     private final UserService userService;
     private final JwtTokenRepository jwtTokenRepository;
@@ -44,12 +42,13 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.NEVER))
-                .addFilterAt(new JwtCsrfFilter(jwtTokenRepository, resolver), CsrfFilter.class)
-                .csrf(https -> https.ignoringRequestMatchers("/**"))
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/registration", "/auth/login").permitAll()
-                        .anyRequest().authenticated()
+                .csrf(AbstractHttpConfigurer::disable)
+//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.NEVER))
+//                .addFilterAt(new JwtCsrfFilter(jwtTokenRepository, resolver), CsrfFilter.class)
+//                .csrf(https -> https.ignoringRequestMatchers("/**"))
+                .authorizeHttpRequests(requests -> requests.anyRequest().permitAll()
+//                        .requestMatchers("/registration", "/auth/login").permitAll()
+//                        .anyRequest().authenticated()
                 )
                 .logout(LogoutConfigurer::permitAll)
                 .httpBasic(
