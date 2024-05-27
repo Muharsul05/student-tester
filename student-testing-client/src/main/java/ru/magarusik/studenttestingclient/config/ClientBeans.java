@@ -1,4 +1,4 @@
-package ru.magarusik.studenttestingclient.confing;
+package ru.magarusik.studenttestingclient.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
