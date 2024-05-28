@@ -14,16 +14,16 @@ public class RestClientTesting implements TestingRestClient {
     private final RestClient restClient;
 
     public static final ParameterizedTypeReference<List<Test>>
-            USERS_TYPE_REFERENCE = new ParameterizedTypeReference<>() {
+            TESTS_LIST = new ParameterizedTypeReference<>() {
     };
 
     @Override
     public List<Test> findAllTests() {
         return this.restClient
                 .get()
-                .uri("/api/v1/testing-service/tests/")
+                .uri("/api/v1/testing-service/tests")
                 .retrieve()
-                .body(USERS_TYPE_REFERENCE);
+                .body(TESTS_LIST);
     }
 
     @Override
@@ -48,6 +48,5 @@ public class RestClientTesting implements TestingRestClient {
 
     @Override
     public void deleteTest(int testId) {
-
     }
 }

@@ -8,25 +8,21 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="/static/favicon.png">
-    <title>Users List</title>
+    <title>Tests List</title>
 </head>
 <body>
-<h1>All users:</h1>
+<h1>All tests:</h1>
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">Login</th>
-        <th scope="col">Password</th>
-        <th scope="col">Email</th>
-        <th scope="col">Role</th>
+        <th scope="col">Title</th>
+        <th scope="col">Created</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="user: ${users}">
-        <td th:text="${user.login}"></td>
-        <td th:text="${user.password}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.role}"></td>
+    <tr th:each="test: ${tests}">
+        <td th:text="${test.title()}"></td>
+        <td th:text="${test.createdDate()}"></td>
     </tr>
     </tbody>
 </table>

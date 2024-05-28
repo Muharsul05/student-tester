@@ -1,8 +1,8 @@
-package ru.magarusik.studenttestingclient.entity;
+package ru.magarusik.studenttestingservice.dto;
 
 import java.util.Date;
 
-public record Test(
+public record TestDTO(
         String title,
         Date createdDate) {
 }
