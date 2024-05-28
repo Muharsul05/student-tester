@@ -1,4 +1,4 @@
-package ru.magarusik.studenttestingclient.client;
+package ru.magarusik.studenttestingclient.client.testing;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
@@ -9,20 +9,21 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-public class RestClientTestingRestClient implements TestingRestClient {
+public class RestClientTesting implements TestingRestClient {
 
     private final RestClient restClient;
 
     public static final ParameterizedTypeReference<List<Test>>
-            TESTS_TYPE_REFERENCE = new ParameterizedTypeReference<>() {
+            USERS_TYPE_REFERENCE = new ParameterizedTypeReference<>() {
     };
 
     @Override
     public List<Test> findAllTests() {
         return this.restClient
                 .get()
-                .uri("/all/")
-                .retrieve().body(TESTS_TYPE_REFERENCE);
+                .uri("/api/v1/testing-service/tests/")
+                .retrieve()
+                .body(USERS_TYPE_REFERENCE);
     }
 
     @Override

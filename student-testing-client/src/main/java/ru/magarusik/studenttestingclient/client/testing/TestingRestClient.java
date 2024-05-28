@@ -1,4 +1,4 @@
-package ru.magarusik.studenttestingclient.client;
+package ru.magarusik.studenttestingclient.client.testing;
 
 import ru.magarusik.studenttestingclient.entity.Test;
 
