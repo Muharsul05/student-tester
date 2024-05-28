@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: student-testing-client
+
+  datasource:
+    username: magarusik
+    password: 1312
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=user_management
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+  liquibase:
+    enabled: true
+    default-schema: user_management
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1/testing-client/
+
+testing:
+  services:
+    testing-service:
+      uri: http://localhost:9090

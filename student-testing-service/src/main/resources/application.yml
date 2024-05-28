@@ -5,7 +5,7 @@ spring:
   datasource:
     username: magarusik
     password: 1312
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=testing
+    url: jdbc:postgresql://localhost:5432/postgres
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -15,6 +15,7 @@ spring:
 
   liquibase:
     enabled: true
+    default-schema: testing
 
 server:
   port: 9090
