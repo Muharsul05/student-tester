@@ -18,11 +18,9 @@ public class SchemaInitializer implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        if (bean instanceof DataSource) {
-            DataSource dataSource = (DataSource) bean;
-            try {
-                Connection conn = dataSource.getConnection();
-                Statement statement = conn.createStatement();
+        if (bean instanceof DataSource dataSource) {
+            try (Connection connection = dataSource.getConnection();
+                 Statement statement = connection.createStatement()) {
                 statement.execute(String.format("CREATE SCHEMA IF NOT EXISTS %s", schemaName));
             } catch (SQLException e) {
                 throw new RuntimeException(e);

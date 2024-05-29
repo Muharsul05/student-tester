@@ -10,7 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
-public class HelloController {
+public class MainController {
+
     private final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy  HH:mm:ss");
 
     @GetMapping

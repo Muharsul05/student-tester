@@ -2,7 +2,9 @@ package ru.magarusik.studenttestingservice.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.magarusik.studenttestingservice.controller.payload.NewTestPayload;
 import ru.magarusik.studenttestingservice.dto.TestDTO;
+import ru.magarusik.studenttestingservice.entity.Test;
 import ru.magarusik.studenttestingservice.repository.TestRepository;
 import ru.magarusik.studenttestingservice.utils.Converter;
 
@@ -18,5 +20,12 @@ public class TestService {
         return testRepository.findAll().stream()
                 .map(Converter::convert)
                 .toList();
+    }
+
+    public Test createTest(NewTestPayload payload) {
+        Test test = new Test();
+        test.setTitle(payload.title());
+        test.setCreatedDate(payload.date());
+        return testRepository.save(test);
     }
 }

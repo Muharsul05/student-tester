@@ -20,10 +20,10 @@
     </thead>
     <tbody>
     <tr th:each="user: ${users}">
-        <td th:text="${user.login}"></td>
-        <td th:text="${user.password}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.role}"></td>
+        <td th:text="${user.login()}"></td>
+        <td th:text="${user.password()}"></td>
+        <td th:text="${user.email()}"></td>
+        <td th:text="${user.role()}"></td>
     </tr>
     </tbody>
 </table>
