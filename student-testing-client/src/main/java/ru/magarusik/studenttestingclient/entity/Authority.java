@@ -11,8 +11,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "authority", schema = "user_management")
 public class Authority {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String authority;
 }
