@@ -6,4 +6,6 @@ import ru.magarusik.studenttestingservice.entity.Test;
 
 @Repository
 public interface TestRepository extends JpaRepository<Test, Long> {
+
+    Test findTestByTitle(String title);
 }

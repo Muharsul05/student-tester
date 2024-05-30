@@ -1,9 +1,16 @@
 package ru.magarusik.studenttestingservice.controller.payload;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
-public record NewTestPayload(
-    String title,
-    Date date
-) {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class NewTestPayload {
+
+    private String title;
+    private Date createdDate;
 }

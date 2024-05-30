@@ -8,6 +8,7 @@ import ru.magarusik.studenttestingservice.entity.Test;
 import ru.magarusik.studenttestingservice.repository.TestRepository;
 import ru.magarusik.studenttestingservice.utils.Converter;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,10 +23,14 @@ public class TestService {
                 .toList();
     }
 
-    public Test createTest(NewTestPayload payload) {
+    public void createTest(NewTestPayload payload) {
         Test test = new Test();
-        test.setTitle(payload.title());
-        test.setCreatedDate(payload.date());
-        return testRepository.save(test);
+        test.setTitle(payload.getTitle());
+        test.setCreatedDate(new Date());
+        testRepository.save(test);
+    }
+
+    public TestDTO findTestByTitle(String title) {
+        return Converter.convert(testRepository.findTestByTitle(title));
     }
 }

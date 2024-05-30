@@ -17,13 +17,6 @@ spring:
     enabled: true
     default-schema: testing
 
-  security:
-    user:
-      name: testing-service-client
-      password: testing
-      roles:
-        - SERVICE
-
 server:
   port: 9090
   servlet:

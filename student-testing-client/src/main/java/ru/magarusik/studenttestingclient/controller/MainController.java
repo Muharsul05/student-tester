@@ -16,7 +16,8 @@ public class MainController {
 
     @GetMapping
     public String hello(Model model, Authentication authentication) {
-        model.addAttribute("message", "Hello %s!".formatted(authentication.getName()));
+        model.addAttribute("message", "Hello %s! Your role is %s"
+                .formatted(authentication.getName(), authentication.getAuthorities()));
         model.addAttribute("currentTime", dateFormat.format(new Date()));
         return "index";
     }

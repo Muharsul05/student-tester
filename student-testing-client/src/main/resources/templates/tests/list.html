@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="/static/favicon.png">
     <title>Tests List</title>
 </head>
 <body>
-<h1>All tests:</h1>
+<h1>Список всех тестов:</h1>
 <table class="table">
     <thead>
     <tr>
         <th scope="col">Title</th>
-        <th scope="col">Created</th>
+        <th scope="col">Created date</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="test: ${tests}">
-        <td th:text="${test.title()}"></td>
+        <td><a data-th-href="@{tests/{title}(title=${test.title()})}"
+               th:text="${test.title()}"></a></td>
         <td th:text="${test.createdDate()}"></td>
     </tr>
     </tbody>
