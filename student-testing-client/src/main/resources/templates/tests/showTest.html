@@ -14,15 +14,13 @@
     <thead>
     <tr>
         <th scope="col">Title</th>
-        <th scope="col">Test ID</th>
         <th scope="col">Question type</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="question: ${questions}">
-        <td th:text="${question.title()}"></td>
-        <td th:text="${question.testId()}"></td>
-        <td th:text="${question.questionTypeId()}"></td>
+        <td th:text="${question.getTitle()}"></td>
+        <td th:text="${question.getQuestionType()}"></td>
     </tr>
     </tbody>
 </table>

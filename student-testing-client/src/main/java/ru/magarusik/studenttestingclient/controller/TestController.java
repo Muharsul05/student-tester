@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.magarusik.studenttestingclient.client.RestClientTesting;
 import ru.magarusik.studenttestingclient.controller.payload.NewTestPayload;
+import ru.magarusik.studenttestingclient.utils.Converter;
 
 import java.util.Date;
 
@@ -45,7 +46,10 @@ public class TestController {
         var test = testingRestClient.findTestByTitle(title);
         model.addAttribute("test", test);
         model.addAttribute("questions",
-                testingRestClient.getQuestionsByTestId(test.id()));
+                testingRestClient.getQuestionsByTestId(test.id())
+                        .stream()
+                        .map(Converter::convert)
+                        .toList());
         return "/tests/showTest";
     }
 
