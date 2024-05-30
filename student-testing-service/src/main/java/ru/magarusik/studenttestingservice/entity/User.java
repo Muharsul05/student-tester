@@ -7,14 +7,16 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.proxy.HibernateProxy;
 
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity(name = "users")
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -42,4 +44,28 @@ public class User {
     private int course;
 
     private String group;
+
+    @Override
+    public final boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null) return false;
+
+        Class<?> oEffectiveClass = object instanceof HibernateProxy hibernateProxy
+                ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass()
+                : object.getClass();
+
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy hibernateProxy
+                ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass()
+                : this.getClass();
+        if (thisEffectiveClass != oEffectiveClass) return false;
+        User user = (User) object;
+        return Objects.equals(this, user);
+    }
+
+    @Override
+    public final int hashCode() {
+        return this instanceof HibernateProxy hibernateProxy
+                ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass().hashCode()
+                : getClass().hashCode();
+    }
 }

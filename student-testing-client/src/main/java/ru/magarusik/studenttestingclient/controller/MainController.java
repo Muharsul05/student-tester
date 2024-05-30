@@ -15,7 +15,7 @@ public class MainController {
     private final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy  HH:mm:ss");
 
     @GetMapping
-    public String hello(Model model, Authentication authentication) {
+    public String getIndexPage(Model model, Authentication authentication) {
         model.addAttribute("message", "Hello %s! Your role is %s"
                 .formatted(authentication.getName(), authentication.getAuthorities()));
         model.addAttribute("currentTime", dateFormat.format(new Date()));
