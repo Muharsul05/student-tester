@@ -5,8 +5,8 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestClient;
 import ru.magarusik.studenttestingclient.controller.payload.NewTestPayload;
+import ru.magarusik.studenttestingclient.dto.QuestionDTO;
 import ru.magarusik.studenttestingclient.dto.TestDTO;
-import ru.magarusik.studenttestingclient.entity.User;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ public class RestClientTesting {
             TESTS_LIST = new ParameterizedTypeReference<>() {
     };
 
-    public static final ParameterizedTypeReference<List<User>>
-            USERS_LIST = new ParameterizedTypeReference<>() {
+    public static final ParameterizedTypeReference<List<QuestionDTO>>
+            QUESTIONS_LIST = new ParameterizedTypeReference<>() {
     };
 
     public List<TestDTO> findAllTests() {
@@ -48,5 +48,13 @@ public class RestClientTesting {
                 .uri("/api/v1/testing-service/tests/{title}", title)
                 .retrieve()
                 .body(TestDTO.class);
+    }
+
+    public List<QuestionDTO> getQuestionsByTestId(long testId) {
+        return this.restClient
+                .get()
+                .uri("/api/v1/testing-service/questions/{test_id}", testId)
+                .retrieve()
+                .body(QUESTIONS_LIST);
     }
 }
