@@ -1,8 +1,14 @@
 package ru.magarusik.studenttestingservice.dto;
 
+import java.sql.Date;
+
 public record UserDTO(
-        String login,
-        String password,
+        String username,
         String email,
-        String role) {
+        String firstName,
+        String lastName,
+        String patronymic,
+        Date dateOfBirth,
+        int course,
+        String group) {
 }

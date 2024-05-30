@@ -5,7 +5,22 @@
     <title>Create user</title>
 </head>
 <body>
-<form th:action="@{/users/create}" th:object="${user}" method="post">
+<form method="POST" th:action="@{/users/create}">
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" th:field="${userPayload.username}">
+
+        <label for="password" class="form-label">password</label>
+        <input type="text" class="form-control" id="password" th:field="${userPayload.password}">
+
+        <label for="authority" class="form-label">Authority</label>
+        <select id="authority" th:field="${userPayload.authority}">
+            <option th:value="ADMIN" th:text="Admin"></option>
+            <option th:value="TEACHER" th:text="Teacher"></option>
+            <option th:value="STUDENT" th:text="Student"></option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
 </form>
 </body>
 </html>

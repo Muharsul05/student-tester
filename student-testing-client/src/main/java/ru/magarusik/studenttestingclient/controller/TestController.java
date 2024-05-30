@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.magarusik.studenttestingclient.client.RestClientTesting;
 import ru.magarusik.studenttestingclient.controller.payload.NewTestPayload;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
@@ -17,10 +19,12 @@ import java.util.Date;
 public class TestController {
 
     private final RestClientTesting testingRestClient;
+    private final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
     @GetMapping
     public String getAllTestsListPage(Model model) {
         model.addAttribute("tests", testingRestClient.findAllTests());
+        model.addAttribute("dateFormat", dateFormat);
         return "/tests/list";
     }
 

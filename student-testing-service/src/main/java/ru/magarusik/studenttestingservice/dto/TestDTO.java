@@ -1,8 +1,8 @@
 package ru.magarusik.studenttestingservice.dto;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public record TestDTO(
         String title,
-        Date createdDate) {
+        Timestamp createdDate) {
 }

@@ -33,6 +33,7 @@ public class UsersController {
     @GetMapping("/create")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String createUserPage(Model model, NewUserPayload newUserPayload) {
+        System.out.println("get create page");
         model.addAttribute("userPayload", newUserPayload);
         return "/users/create";
     }
@@ -41,8 +42,9 @@ public class UsersController {
     @PostMapping("/create")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String createUser(NewUserPayload payload) {
+        System.out.println(payload);
         this.clientUserDetailService.createUser(payload);
-        return "redirect:/tests";
+        return "redirect:/users";
     }
 
     @PutMapping("/edit")

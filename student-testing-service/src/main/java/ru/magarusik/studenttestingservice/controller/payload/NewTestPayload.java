@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Data
 @AllArgsConstructor
@@ -12,5 +12,5 @@ import java.util.Date;
 public class NewTestPayload {
 
     private String title;
-    private Date createdDate;
+    private Timestamp createdDate;
 }

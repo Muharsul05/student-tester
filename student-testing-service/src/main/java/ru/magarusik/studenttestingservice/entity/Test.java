@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Entity(name = "tests")
 @Data
@@ -28,5 +28,5 @@ public class Test {
     private String title;
 
     @NotNull
-    private Date createdDate;
+    private Timestamp createdDate;
 }

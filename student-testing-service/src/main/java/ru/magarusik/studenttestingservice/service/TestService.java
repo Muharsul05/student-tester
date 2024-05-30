@@ -26,7 +26,7 @@ public class TestService {
     public void createTest(NewTestPayload payload) {
         Test test = new Test();
         test.setTitle(payload.getTitle());
-        test.setCreatedDate(new Date());
+        test.setCreatedDate(payload.getCreatedDate());
         testRepository.save(test);
     }
 
