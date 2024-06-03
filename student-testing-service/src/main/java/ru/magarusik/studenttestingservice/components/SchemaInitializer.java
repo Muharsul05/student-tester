@@ -1,6 +1,6 @@
 package ru.magarusik.studenttestingservice.components;
 
-import org.springframework.beans.BeansException;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
@@ -17,15 +17,14 @@ public class SchemaInitializer implements BeanPostProcessor {
     private String schemaName;
 
     @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        if (bean instanceof DataSource) {
-            DataSource dataSource = (DataSource) bean;
-            try {
-                Connection conn = dataSource.getConnection();
-                Statement statement = conn.createStatement();
+    public Object postProcessAfterInitialization(@NonNull Object bean,
+                                                 @NonNull String beanName) {
+        if (bean instanceof DataSource dataSource) {
+            try (Connection connection = dataSource.getConnection();
+                 Statement statement = connection.createStatement()) {
                 statement.execute(String.format("CREATE SCHEMA IF NOT EXISTS %s", schemaName));
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new IllegalArgumentException(e);
             }
         }
         return bean;

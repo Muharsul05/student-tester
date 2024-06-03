@@ -1,5 +1,6 @@
 package ru.magarusik.studenttestingclient.component;
 
+import lombok.NonNull;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -17,13 +18,14 @@ public class SchemaInitializer implements BeanPostProcessor {
     private String schemaName;
 
     @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+    public Object postProcessAfterInitialization(@NonNull Object bean,
+                                                 @NonNull String beanName) {
         if (bean instanceof DataSource dataSource) {
             try (Connection connection = dataSource.getConnection();
                  Statement statement = connection.createStatement()) {
                 statement.execute(String.format("CREATE SCHEMA IF NOT EXISTS %s", schemaName));
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+            } catch (SQLException | BeansException e) {
+                throw new IllegalArgumentException(e);
             }
         }
         return bean;

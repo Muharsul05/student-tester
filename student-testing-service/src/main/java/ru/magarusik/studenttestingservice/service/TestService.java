@@ -8,7 +8,6 @@ import ru.magarusik.studenttestingservice.entity.Test;
 import ru.magarusik.studenttestingservice.repository.TestRepository;
 import ru.magarusik.studenttestingservice.utils.Converter;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
