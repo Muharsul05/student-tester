@@ -25,7 +25,6 @@ public class UsersController {
 
     @GetMapping("/{username}")
     public String getTestPage(Model model, @PathVariable("username") String username) {
-        System.out.println("Get Test: " + username);
         model.addAttribute("test", clientUserDetailService.findUseByUsername(username));
         return "/tests/showTest";
     }
@@ -33,7 +32,6 @@ public class UsersController {
     @GetMapping("/create")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String createUserPage(Model model, NewUserPayload newUserPayload) {
-        System.out.println("get create page");
         model.addAttribute("userPayload", newUserPayload);
         return "/users/create";
     }
@@ -42,7 +40,6 @@ public class UsersController {
     @PostMapping("/create")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String createUser(NewUserPayload payload) {
-        System.out.println(payload);
         this.clientUserDetailService.createUser(payload);
         return "redirect:/users";
     }

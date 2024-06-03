@@ -32,7 +32,6 @@ public class RestClientTesting {
     }
 
     public void createTest(NewTestPayload payload) {
-        System.out.println(payload);
         this.restClient
                 .post()
                 .uri("/api/v1/testing-service/tests/create")

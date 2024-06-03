@@ -22,7 +22,6 @@ public class TestController {
 
     @PostMapping("/create")
     public void createProduct(@RequestBody NewTestPayload payload) {
-        System.out.println(payload);
         testService.createTest(payload);
     }
 

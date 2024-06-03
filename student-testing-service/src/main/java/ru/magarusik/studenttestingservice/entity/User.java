@@ -57,6 +57,7 @@ public class User {
         Class<?> thisEffectiveClass = this instanceof HibernateProxy hibernateProxy
                 ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass()
                 : this.getClass();
+
         if (thisEffectiveClass != oEffectiveClass) return false;
         User user = (User) object;
         return Objects.equals(this, user);
