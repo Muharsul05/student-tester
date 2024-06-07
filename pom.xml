@@ -9,8 +9,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>student-testing-service</module>
-        <module>student-testing-client</module>
+        <module>service</module>
+        <module>client</module>
     </modules>
 
     <properties>

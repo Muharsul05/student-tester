@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: student-testing-service
+
+  datasource:
+    username: ${DB_USERNAME:magarusik}
+    password: ${DB_PASSWORD:1312}
+    url: jdbc:postgresql://localhost:5432/${DB_NAME:postgres}?currentSchema=${DB_SCHEMA:testing}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+  liquibase:
+    enabled: true
+    default-schema: ${DB_NAME:testing}
+
+  devtools:
+    livereload:
+      port: 35730
+
+server:
+  port: ${SERVER_PORT:9090}
+  servlet:
+    context-path: /api/v1/service/
