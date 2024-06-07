@@ -7,13 +7,11 @@ import org.hibernate.proxy.HibernateProxy;
 import java.util.List;
 import java.util.Objects;
 
-@Getter
-@Setter
-@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user", schema = "user_management")
+@Table(name = "users", schema = "user_management")
 public class User {
 
     @Id
@@ -31,29 +29,4 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
     @ToString.Exclude
     private List<Authority> authorities;
-
-    @Override
-    public final boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null) return false;
-
-        Class<?> oEffectiveClass = object instanceof HibernateProxy hibernateProxy
-                ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass()
-                : object.getClass();
-
-        Class<?> thisEffectiveClass = this instanceof HibernateProxy hibernateProxy
-                ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass()
-                : this.getClass();
-
-        if (thisEffectiveClass != oEffectiveClass) return false;
-        User user = (User) object;
-        return Objects.equals(this, user);
-    }
-
-    @Override
-    public final int hashCode() {
-        return this instanceof HibernateProxy hibernateProxy
-                ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass().hashCode()
-                : getClass().hashCode();
-    }
 }

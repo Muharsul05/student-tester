@@ -8,11 +8,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.magarusik.client.entity.Authority;
-import ru.magarusik.client.repository.UserRepository;
 import ru.magarusik.client.controller.payload.NewUserPayload;
+import ru.magarusik.client.entity.Authority;
 import ru.magarusik.client.entity.User;
 import ru.magarusik.client.repository.AuthorityRepository;
+import ru.magarusik.client.repository.UserRepository;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class ClientUserDetailService implements UserDetailsService {
                         .username(user.getUsername())
                         .password(user.getPassword())
                         .authorities(user.getAuthorities().stream()
-                                .map(Authority::getAuthority)
+                                .map(Authority::getName)
                                 .map(SimpleGrantedAuthority::new)
                                 .toList())
                         .build())
@@ -48,7 +48,7 @@ public class ClientUserDetailService implements UserDetailsService {
         user.setUsername(payload.getUsername());
         user.setPassword(passwordEncoder.encode(payload.getPassword()));
         user.setAuthorities(List.of(authorityRepository
-                .findByAuthority(payload.getAuthority())));
+                .findByName(payload.getName())));
         userRepository.save(user);
     }
 

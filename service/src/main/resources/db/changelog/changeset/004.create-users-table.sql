@@ -11,5 +11,5 @@ create table users
     patronymic    varchar,
     date_of_birth date,
     course        int,
-    "group"       varchar
+    group_name    varchar
 );

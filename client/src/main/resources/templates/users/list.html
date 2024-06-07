@@ -23,7 +23,7 @@
                th:text="${user.getUsername()}"></a>
         </td>
         <td th:text="${user.getPassword()}"></td>
-        <td th:text="${user.getAuthorities().getFirst().getAuthority()}"></td>
+        <td th:text="${user.getAuthorities().getFirst().getName()}"></td>
     </tr>
     </tbody>
 </table>

@@ -5,5 +5,5 @@ import ru.magarusik.client.entity.Authority;
 
 public interface AuthorityRepository extends JpaRepository<Authority, Long> {
 
-    Authority findByAuthority(String authority);
+    Authority findByName(String name);
 }

@@ -1,24 +1,21 @@
 package ru.magarusik.service.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
-import org.hibernate.proxy.HibernateProxy;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
-import java.util.Objects;
 
-@Entity(name = "tests")
-@Getter
-@Setter
-@ToString
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "test", schema = "testing")
 public class Test {
 
     @Id
@@ -31,29 +28,5 @@ public class Test {
 
     @NotNull
     private Timestamp createdDate;
-
-    @Override
-    public final boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null) return false;
-
-        Class<?> oEffectiveClass = object instanceof HibernateProxy hibernateProxy
-                ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass()
-                : object.getClass();
-
-        Class<?> thisEffectiveClass = this instanceof HibernateProxy hibernateProxy ?
-                hibernateProxy.getHibernateLazyInitializer().getPersistentClass()
-                : this.getClass();
-
-        if (thisEffectiveClass != oEffectiveClass) return false;
-        Test test = (Test) object;
-        return Objects.equals(this, test);
-    }
-
-    @Override
-    public final int hashCode() {
-        return this instanceof HibernateProxy hibernateProxy
-                ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass().hashCode()
-                : getClass().hashCode();
-    }
 }
+
