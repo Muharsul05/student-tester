@@ -23,12 +23,6 @@ public class UsersController {
         return "/users/list";
     }
 
-    @GetMapping("/{username}")
-    public String getTestPage(Model model, @PathVariable("username") String username) {
-        model.addAttribute("test", clientUserDetailService.findUseByUsername(username));
-        return "/tests/showTest";
-    }
-
     @GetMapping("/create")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String createUserPage(Model model, NewUserPayload newUserPayload) {
@@ -48,6 +42,14 @@ public class UsersController {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String editUserPage() {
         return "/users/edit";
+    }
+
+    @GetMapping("/{username}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    public String getUserPage(Model model, @PathVariable("username") String username) {
+        var user = clientUserDetailService.findUseByUsername(username);
+        model.addAttribute("user", user);
+        return "/users/show-user";
     }
 
     @ExceptionHandler(AccessDeniedException.class)

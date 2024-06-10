@@ -50,7 +50,7 @@ public class TestController {
                         .stream()
                         .map(Converter::convert)
                         .toList());
-        return "/tests/showTest";
+        return "/tests/show-test";
     }
 
     @ExceptionHandler(AccessDeniedException.class)
