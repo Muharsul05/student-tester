@@ -36,8 +36,7 @@ public class TestController {
     @PostMapping("/create")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'TEACHER')")
     public String createTest(NewTestPayload payload) {
-        payload.setCreatedDate(new Date());
-        this.testingRestClient.createTest(payload);
+        this.testingRestClient.createTest(new NewTestPayload(payload.title(), new Date()));
         return "redirect:/tests";
     }
 

@@ -1,10 +1,7 @@
 package ru.magarusik.client.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "users", schema = "user_management")
+@Builder
 public class User {
 
     @Id

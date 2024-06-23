@@ -1,6 +1,7 @@
 package ru.magarusik.client.dto.enums;
 
 public enum QuestionTypes {
+
     SINGLE_CHOICE("Один верный ответ"),
     MULTIPLE_CHOICE("Несколько верных ответов"),
     FILL_IN_THE_BLANK("Написать ответ"),

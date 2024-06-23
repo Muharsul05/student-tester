@@ -36,7 +36,7 @@
             <input type="text" class="form-control" id="password" th:field="${userPayload.password}">
 
             <label for="authority" class="form-label">Authority</label>
-            <select id="authority" th:field="${userPayload.name}">
+            <select id="authority" th:field="${userPayload.authority}">
                 <option th:value="ADMIN" th:text="Admin"></option>
                 <option th:value="TEACHER" th:text="Teacher"></option>
                 <option th:value="STUDENT" th:text="Student"></option>

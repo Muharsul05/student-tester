@@ -44,11 +44,12 @@ public class ClientUserDetailService implements UserDetailsService {
     }
 
     public void createUser(NewUserPayload payload) {
-        User user = new User();
-        user.setUsername(payload.getUsername());
-        user.setPassword(passwordEncoder.encode(payload.getPassword()));
-        user.setAuthorities(List.of(authorityRepository
-                .findByName(payload.getName())));
+        var user = User.builder()
+                .username(payload.username())
+                .password(passwordEncoder.encode(payload.password()))
+                .authorities(List.of(authorityRepository
+                        .findByName(payload.authority())))
+                .build();
         userRepository.save(user);
     }
 
