@@ -7,6 +7,7 @@ import org.springframework.web.client.RestClient;
 import ru.magarusik.client.controller.payload.NewTestPayload;
 import ru.magarusik.client.dto.QuestionDTO;
 import ru.magarusik.client.dto.TestDTO;
+import ru.magarusik.client.dto.UserProfileDTO;
 
 import java.util.List;
 
@@ -55,5 +56,13 @@ public class RestClientTesting {
                 .uri("/questions/{test_id}", testId)
                 .retrieve()
                 .body(QUESTIONS_LIST);
+    }
+
+    public UserProfileDTO getUserProfile(long userId) {
+        return this.restClient
+                .get()
+                .uri("/users/{userId}", userId)
+                .retrieve()
+                .body(UserProfileDTO.class);
     }
 }

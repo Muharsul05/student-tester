@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset magarusik:create-table-user
+--changeset magarusik:create-table-userProfile
 
 create table users
 (

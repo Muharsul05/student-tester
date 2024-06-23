@@ -47,7 +47,7 @@ public class UsersController {
     @GetMapping("/{username}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String getUserPage(Model model, @PathVariable("username") String username) {
-        var user = clientUserDetailService.findUseByUsername(username);
+        var user = clientUserDetailService.findUserByUsername(username);
         model.addAttribute("user", user);
         return "/users/show-user";
     }

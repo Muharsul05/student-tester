@@ -3,25 +3,38 @@ package ru.magarusik.service.util;
 import lombok.experimental.UtilityClass;
 import ru.magarusik.service.dto.QuestionDTO;
 import ru.magarusik.service.dto.TestDTO;
-import ru.magarusik.service.dto.UserDTO;
+import ru.magarusik.service.dto.UserProfileDTO;
 import ru.magarusik.service.entity.Question;
 import ru.magarusik.service.entity.Test;
-import ru.magarusik.service.entity.User;
+import ru.magarusik.service.entity.UserProfile;
 
 @UtilityClass
 public class Converter {
 
-    public UserDTO convert(User user) {
-        return new UserDTO(
-                user.getUsername(),
-                user.getEmail(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getPatronymic(),
-                user.getDateOfBirth(),
-                user.getCourse(),
-                user.getGroup()
+    public UserProfileDTO convert(UserProfile userProfile) {
+        return new UserProfileDTO(
+                userProfile.getId(),
+                userProfile.getEmail(),
+                userProfile.getFirstName(),
+                userProfile.getLastName(),
+                userProfile.getPatronymic(),
+                userProfile.getDateOfBirth(),
+                userProfile.getCourse(),
+                userProfile.getGroupName()
         );
+    }
+
+    public UserProfile convert(UserProfileDTO userDTO) {
+        return UserProfile.builder()
+                .userId(userDTO.userId())
+                .email(userDTO.email())
+                .firstName(userDTO.firstName())
+                .lastName(userDTO.lastName())
+                .patronymic(userDTO.patronymic())
+                .dateOfBirth(userDTO.dateOfBirth())
+                .groupName(userDTO.groupName())
+                .course(userDTO.course())
+                .build();
     }
 
     public TestDTO convert(Test test) {
