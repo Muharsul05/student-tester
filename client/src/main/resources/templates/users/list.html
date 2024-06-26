@@ -39,7 +39,7 @@
         <tbody>
         <tr th:each="userProfile: ${users}">
             <td>
-                <a data-th-href="@{/users/{username}(username=${userProfile.getUsername()})}"
+                <a data-th-href="@{/profile/{username}(username=${userProfile.getUsername()})}"
                    th:text="${userProfile.getUsername()}"></a>
             </td>
             <td th:text="${userProfile.getPassword()}"></td>
